@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import authReq from'./utils/authReq'
+const Storage = require('chrome-storage/index')
 
 class Login extends Component{
     constructor(props){
@@ -24,12 +26,24 @@ class Login extends Component{
             username: this.state.username,
             password: this.state.password
         }
-        return axios.post (process.env.REACT_APP_BASE_URL + '/auth/token', body)
+        return axios.post(process.env.REACT_APP_BASE_URL + '/auth/token', body)
             .then(response => {
-                console.log(response)
+                if(response.data.token){
+                    Storage.load(() => {
+                        Storage.set('token', response.data.token)
+                    })
+                    return authReq('/auth/token')
+                } 
+                else {
+                    console.log(response)
+                }
+            })
+            .then(response=> {
+                this.props.setAuthentication(response.data)
+                this.props.history.push('/')
             })
             .catch(err => {
-                // this.props.logIn(err)
+               console.log(err)
             })
         }
 
@@ -46,8 +60,8 @@ class Login extends Component{
                         ? false 
                         : true}>submit</button>
                 </form>
-               {/* {this.props.auth.error ? <div className="warning">{this.props.auth.error}</div> : null} */}
-                {/* {this.props.auth.success ? <div className="success">{this.props.auth.success}</div> : null}  */}
+               {/* {? <div className="warning">{}</div> : null} */}
+                {/* { ? <div className="success">{}</div> : null}  */}
             </div>
             
         )
