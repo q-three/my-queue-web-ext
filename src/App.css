@@ -6,9 +6,8 @@ form, .actions{
   border:1px solid #ccc;
   border-radius:5px;
   width:75%;
-  padding:20px; 
+  padding:25px; 
   margin:18px auto;
-  max-height: 
 }
 
 input, button, label, div{
@@ -45,8 +44,16 @@ input, button, label, div{
   background-color: #dd295650;
 }
 
-
-/*===========Home/AddQueueItem============*/
+.success {
+  border:1px solid rgb(8, 105, 24);;
+  width:46%;
+  padding:8px;
+  margin: 8px auto;
+  margin-top: 5px;
+  border-radius:5px;
+  color: rgb(8, 105, 24);
+  background-color:rgb(93, 214, 113);
+}
 
 .selectSearch{
   width:calc(100% - 10px);
@@ -57,3 +64,22 @@ select:focus, input:focus{
   border: 1px solid #dd2956;
 }
 
+.backButton{
+  left:23px;
+}
+
+.clearButton {
+  right:23px;
+}
+
+.clearButton, .backButton{
+  font-size: 12px;
+  position:absolute;
+  top:23px;
+  color:rgb(34, 78, 172);
+  text-decoration: underline;
+}
+
+.clearButton:hover, .backButton:hover{
+  color: rgb(94, 134, 221);
+}

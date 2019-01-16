@@ -43,7 +43,6 @@ class Home extends Component{
             this.setState({
                 friends: response.data 
             })
-            //Test with a user that has no friends
         }
         catch(err){
             console.log(err)
@@ -81,11 +80,29 @@ class Home extends Component{
         this.postNewItem(item)
     }
 
+    logout = () => {
+        return new Promise((resolve, reject) => {
+            window.chrome.storage.local.clear(() => {  
+                resolve(true)})
+        }).then(result => {
+         if(result) this.props.history.push('/login')
+         else console.log('Logout was prevented somehow')
+     })
+    }
+
+    clearForm = () => {
+        this.setState({
+            desc: '',
+            url: '',
+            success: false
+        })
+    }
     
     render(){
         return(
             <div className="addQueueItem">
-                <Link className="backButton" to='/home'><i className="fa fa-arrow-left"></i></Link>
+                <div className="backButton" onClick={this.logout}>Logout</div>
+                <div className="clearButton" onClick={this.clearForm}>Clear</div>
                 <form onSubmit={this.submit}>
                     <label htmlFor='selectedUser'>Add For: </label>
                     <select className="selectSearch" name="selectedUser" onChange={this.handleChange}>
@@ -95,24 +112,24 @@ class Home extends Component{
                         }) : null} 
                     </select>
 
-                <label htmlFor='selectedType'>Category</label>    
-                <select name='selectedType' className="selectSearch" onChange={this.handleChange}>
-                    <option value='music'>Music</option>
-                    <option value='video'>Video</option>
-                    <option value='games'>Games</option>
-                    <option value='places'>Places</option>
-                    <option value='links'>Check This Out</option>
-                </select>   
-                <br/><br/>
+                    <label htmlFor='selectedType'>Category:</label>    
+                    <select name='selectedType' className="selectSearch" onChange={this.handleChange}>
+                        <option value='music'>Music</option>
+                        <option value='video'>Video</option>
+                        <option value='games'>Games</option>
+                        <option value='places'>Places</option>
+                        <option value='links'>Check This Out</option>
+                    </select>   
+                    <br/><br/>
 
-                <label htmlFor='desc'>Description</label>    
-                <input className='inputBox' type='text' name='desc' value={this.state.desc} onChange={this.handleChange}></input>
-                <label htmlFor='url'>URL</label>   
-                <input className='inputBox' type='text' name='url' value={this.state.url} onChange={this.handleChange}></input>
-                <br/><br/>
-                <input type='submit' className='btn'></input>
+                    <label htmlFor='desc'>Description:</label>    
+                    <input className='inputBox' type='text' name='desc' value={this.state.desc} onChange={this.handleChange}/>
+                    <label htmlFor='url'>URL:</label>   
+                    <input className='inputBox' type='text' name='url' value={this.state.url} onChange={this.handleChange}/>
+                    <br/><br/>
+                    <input type='submit' className='btn' value='Submit'/>
+                    {this.state.success ? <div className="success">{this.state.success}</div> : null}
                 </form>
-                {this.state.success ? <div className="success">{this.state.success}</div> : null}
             </div>
         )
     }
