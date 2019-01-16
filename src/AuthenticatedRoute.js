@@ -18,7 +18,7 @@ const AuthenticatedRoute = props => {
     return <Route path={path} component={component} /> 
   }
   else {
-    return <Redirect to='/' />
+    return <Redirect to='/login' />
   }
 }
 
