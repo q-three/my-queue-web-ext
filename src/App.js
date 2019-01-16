@@ -6,6 +6,7 @@ import Home from './Home'
 import AuthenticatedRoute from './AuthenticatedRoute';
 import authReq from './utils/authReq';
 
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -28,6 +29,8 @@ class App extends Component {
   }
 
   componentDidMount(){
+    console.log()
+
     authReq('/auth/token')
     .then(response => this.setAuthentication(response.data))
     .catch(err => this.setAuthentication(null))
@@ -37,9 +40,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <AuthenticatedRoute path='/home' component={Home}/>
-          <Route path='/login' render={(props) => <Login {...props} setAuthentication={this.setAuthentication} />} />
-          <Route path='/' component={Login}/>
+          <AuthenticatedRoute path='/home' authentication={this.state.authentication} component={Home}/>
+          <Route path='/' render={(props) => <Login {...props} setAuthentication={this.setAuthentication} />} />
         </Switch>
       </BrowserRouter>
     );

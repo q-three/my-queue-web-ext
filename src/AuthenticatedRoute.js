@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
 const AuthenticatedRoute = props => {
+  console.log(props)
   const {
     authentication: {
       pending,

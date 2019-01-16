@@ -21,6 +21,8 @@ class Login extends Component{
     }
 
     handleSubmit = async (e) => {
+        console.log(this.props)
+
         e.preventDefault()
         const body ={
             username: this.state.username,
@@ -28,19 +30,13 @@ class Login extends Component{
         }
         return axios.post(process.env.REACT_APP_BASE_URL + '/auth/token', body)
             .then(response => {
-                if(response.data.token){
-                    Storage.load(() => {
-                        Storage.set('token', response.data.token)
-                    })
-                    return authReq('/auth/token')
-                } 
-                else {
-                    console.log(response)
-                }
+                
+            window.chrome.storage.local.set({'token': response.data}, () => console.log("Token Saved"))
+            return authReq('/auth/token')
             })
             .then(response=> {
                 this.props.setAuthentication(response.data)
-                this.props.history.push('/')
+                this.props.history.push('/home')
             })
             .catch(err => {
                console.log(err)

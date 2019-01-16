@@ -6,7 +6,7 @@ class Home extends Component{
 
     render(){
         return(
-            <div>{Storage.get('token',0)}</div>
+            <div>HERE</div>
         )
     }
 }
