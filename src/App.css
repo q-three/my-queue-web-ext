@@ -1,32 +1,85 @@
-.App {
-  text-align: center;
+body {
+  min-width:300px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+form, .actions{
+  border:1px solid #ccc;
+  border-radius:5px;
+  width:75%;
+  padding:25px; 
+  margin:18px auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input, button, label, div{
+  display:block;
 }
 
-.App-link {
-  color: #61dafb;
+ input, select{
+  margin-bottom:20px;
+  width:100%;
+  height:40px;
+  border: 1px solid #ccc;
+  border-radius:32px;
+  padding-left:10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ input[type="submit"]{
+  margin:8px auto;
+  width:80%;
+  height:40px;
+  border: 1px solid #ccc;
+  border-radius:32px;
+  padding-left: 10px;
+  background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet);
+  font-weight: 700;
+}
+
+.warning {
+  border:1px solid #dd2956;
+  width:46%;
+  padding:8px;
+  margin: 8px auto;
+  border-radius:5px;
+  color: #dd2956;
+  background-color: #dd295650;
+}
+
+.success {
+  border:1px solid rgb(8, 105, 24);;
+  width:46%;
+  padding:8px;
+  margin: 8px auto;
+  margin-top: 5px;
+  border-radius:5px;
+  color: rgb(8, 105, 24);
+  background-color:rgb(93, 214, 113);
+}
+
+.selectSearch{
+  width:calc(100% - 10px);
+}
+
+select:focus, input:focus{
+  outline:none;
+  border: 1px solid #dd2956;
+}
+
+.backButton{
+  left:23px;
+}
+
+.clearButton {
+  right:23px;
+}
+
+.clearButton, .backButton{
+  font-size: 12px;
+  position:absolute;
+  top:23px;
+  color:rgb(34, 78, 172);
+  text-decoration: underline;
+}
+
+.clearButton:hover, .backButton:hover{
+  color: rgb(94, 134, 221);
 }

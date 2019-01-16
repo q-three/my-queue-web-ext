@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import Home from './Home'
 
 const AuthenticatedRoute = props => {
   console.log(props)
@@ -15,10 +16,10 @@ const AuthenticatedRoute = props => {
     return <div>Loading...</div>
   }
   else if(user) {
-    return <Route path={path} component={component} /> 
+    return <Route path={path} render={(props) => <Home {...props} authentication={user}/>} /> 
   }
   else {
-    return <Redirect to='/' />
+    return <Redirect to='/login' />
   }
 }
 

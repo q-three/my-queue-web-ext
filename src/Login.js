@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import authReq from'./utils/authReq'
-const Storage = require('chrome-storage/index')
 
 class Login extends Component{
     constructor(props){
@@ -10,7 +9,8 @@ class Login extends Component{
 
         this.state={
             username: '',
-            password: ''
+            password: '',
+            badLogin: false
         }
     }
 
@@ -21,8 +21,6 @@ class Login extends Component{
     }
 
     handleSubmit = async (e) => {
-        console.log(this.props)
-
         e.preventDefault()
         const body ={
             username: this.state.username,
@@ -36,10 +34,12 @@ class Login extends Component{
             })
             .then(response=> {
                 this.props.setAuthentication(response.data)
-                this.props.history.push('/home')
+                this.props.history.push('/')
             })
             .catch(err => {
-               console.log(err)
+               this.setState({
+                   badLogin: true
+               })
             })
         }
 
@@ -51,13 +51,12 @@ class Login extends Component{
                     <input id="username" type="text" required onChange={(e) => this.handleChange(e)}/>
                     <label htmlFor="password">password:</label>
                     <input id="password" type="password" minLength="8" required onChange={(e) => this.handleChange(e)}/>
-                    <button id="submit" type="submit" disabled={
+                    <input id="submit" type="submit" value='Submit' disabled={
                         (this.state.username.length > 1 && this.state.password.length >= 8) 
                         ? false 
-                        : true}>submit</button>
+                        : true}/>
+                    {this.state.badLogin ? <div className="warning">Bad Login Attempt</div> : null}
                 </form>
-               {/* {? <div className="warning">{}</div> : null} */}
-                {/* { ? <div className="success">{}</div> : null}  */}
             </div>
             
         )
