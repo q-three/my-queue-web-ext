@@ -51,10 +51,10 @@ class Login extends Component{
                     <input id="username" type="text" required onChange={(e) => this.handleChange(e)}/>
                     <label htmlFor="password">password:</label>
                     <input id="password" type="password" minLength="8" required onChange={(e) => this.handleChange(e)}/>
-                    <button id="submit" type="submit" disabled={
+                    <input id="submit" type="submit" disabled={
                         (this.state.username.length > 1 && this.state.password.length >= 8) 
                         ? false 
-                        : true}>submit</button>
+                        : true}>submit</input>
                     {this.state.badLogin ? <div className="warning">Bad Login Attempt</div> : null}
                 </form>
             </div>

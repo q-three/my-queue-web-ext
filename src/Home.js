@@ -1,30 +1,53 @@
 import React, {Component} from 'react'
 import SelectFriend from './SelectFriend'
 import {Link} from 'react-router-dom'
-// import OmniSearch from './OmniSearch'
+import axios from 'axios'
 
 
 class Home extends Component{
     constructor(props){
         super(props)
         this.state={
-            selectedUser: '',
+            selectedUser: this.props.authentication.user.id,
             selectedType: 'Music',
             desc: '',
             url: '',
-            success: false
+            success: false,
+            friends: null
         }
     }
 
     componentDidMount(){
-        // this.props.getFriends(this.props.auth.user.id)
-        // this.props.selectUser(this.props.auth.user.id)
-
-        console.log(this.props)
+        this.getFriends(this.props.authentication.user.id)
+        this.getCurrentUrl()
+        .then(result => {
+            if(result !== ''){
+                this.setState({
+                    url: result
+                })}
+        })
       }
 
-    changeUser = (e) => {
-        // this.props.selectUser(e.target.value)
+     getCurrentUrl = () =>{
+        return new Promise((resolve, reject) => {
+            window.chrome.tabs.query({active: true, currentWindow: true}, tabs => {  
+                if(tabs && tabs[0] && tabs[0].url) resolve(tabs[0].url)
+                else resolve('')
+            })
+        })
+      }
+
+    getFriends = async(id) =>{
+        try{
+            const response = await axios.get(process.env.REACT_APP_BASE_URL + `/users/u/${id}/friends`)
+            this.setState({
+                friends: response.data 
+            })
+            //Test with a user that has no friends
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 
     handleChange = (e) => {
@@ -33,22 +56,29 @@ class Home extends Component{
         })
     }
 
+    postNewItem = async(item) =>{
+        try{
+            const response = await axios.post(process.env.REACT_APP_BASE_URL + `/queue/`, item)
+            this.setState({
+                success: 'Item added!'
+            })
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
     submit = (e) => {
         e.preventDefault()
         const item = {
-            id: this.props.friends.selectedUser,
-            user_id: this.props.friends.selectedUser,
-            referral_id: this.props.auth.user.id,
+            id: this.state.selectedUser,
+            user_id: this.state.selectedUser,
+            referral_id: this.props.authentication.user.id,
             desc: this.state.desc,
             url: this.state.url,
             type: this.state.selectedType
         }
-        // this.props.addItem(item)
-
-
-        this.setState({
-            success: 'Item added!'
-        })
+        this.postNewItem(item)
     }
 
     
@@ -57,20 +87,14 @@ class Home extends Component{
             <div className="addQueueItem">
                 <Link className="backButton" to='/home'><i className="fa fa-arrow-left"></i></Link>
                 <form onSubmit={this.submit}>
-                    <label htmlFor='friendSrch'>Add For: </label>
-                    <select className="selectSearch" name="friendSrch" onChange={this.changeUser}>
-                        <option value="option1">Option1</option>
-                        {/* <option value={this.props.auth.user.id} >{this.props.auth.user.username}</option> */}
-                        {/* {this.props.friends.friends.map(x => {
+                    <label htmlFor='selectedUser'>Add For: </label>
+                    <select className="selectSearch" name="selectedUser" onChange={this.handleChange}>
+                        <option value={this.props.authentication.user.id} >{this.props.authentication.user.username}</option>
+                        {this.state.friends ? this.state.friends.map(x => {
                            return <SelectFriend value={x.id} username={x.username} key={x.id}/>
-                        })} */}
+                        }) : null} 
                     </select>
-                <hr />
-                {/* <label htmlFor='omniSearch'>Search:</label> */}
-                {/* <OmniSearch name="omniSearch"/> */}
-                <hr/>
 
-                 <p>Didn't find what you were looking for? <br/>Add your own.</p>
                 <label htmlFor='selectedType'>Category</label>    
                 <select name='selectedType' className="selectSearch" onChange={this.handleChange}>
                     <option value='music'>Music</option>

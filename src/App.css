@@ -15,7 +15,7 @@ input, button, label, div{
   display:block;
 }
 
-#login input{
+ input, select{
   margin-bottom:20px;
   width:100%;
   height:40px;
@@ -24,7 +24,7 @@ input, button, label, div{
   padding-left:10px;
 }
 
-#login button[type="submit"]{
+ input[type="submit"]{
   margin:8px auto;
   width:80%;
   height:40px;
@@ -45,4 +45,15 @@ input, button, label, div{
   background-color: #dd295650;
 }
 
+
+/*===========Home/AddQueueItem============*/
+
+.selectSearch{
+  width:calc(100% - 10px);
+}
+
+select:focus, input:focus{
+  outline:none;
+  border: 1px solid #dd2956;
+}
 

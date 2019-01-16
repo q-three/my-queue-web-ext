@@ -40,7 +40,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route path='/login' render={(props) => <Login {...props} setAuthentication={this.setAuthentication} />} /> 
-          <AuthenticatedRoute path='/' authentication={this.state.authentication} component={Home}/>
+          <AuthenticatedRoute path='/' authentication={this.state.authentication} render={(props) => <Home {...props}/>}/>
         </Switch>
       </BrowserRouter>
     );
