@@ -6,9 +6,12 @@
   "description": "Extend the My-Queue App to work as a browser extension",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "React Ext"
+    "default_title": "My-Queue"
   },
-  "permissions": [ "storage", "tabs", "https://*.herokuapp.com/", "http://*.herokuapp.com/"]
+  "permissions": [ "storage", "tabs", "https://*.herokuapp.com/", "http://*.herokuapp.com/"],
+  "icons": {    
+    "16" : "logo.png"
+  }
 }
 
 
