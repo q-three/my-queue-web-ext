@@ -1,10 +1,11 @@
 # My Queue Chrome Extension
 This Extension pairs with the My Queue project as an alternative, light-weight front end.<br>
-The purpose is to be able to add things to your/your friend's Queues quickly and from any page.<br><br>
+The purpose is to be able to add things to your/your friend's Queues quickly and from any page.<br>
 
 The initial popup allows you to login, separate from the regular front-end's login.<br>
 Your login will persist over Chrome Sessions and Tabs, but does not hold over to the regular<br>
-front end web interface. It only persists in the scope of this extension.<br><br>
+front end web interface. It only persists in the scope of this extension.<br>
+However, you must have a valid login. You will not be able to sign up through the Extension.<br>
 
 After login the main popup screen allows you to add to your Queue or a friend's.<br>
 It fills in the current tab's URL by default, but can be cleared to use another (like a link on the page)<br>
