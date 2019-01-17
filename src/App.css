@@ -2,16 +2,18 @@ body {
   min-width:300px;
 }
 
-form, .actions{
+form{
   border:1px solid #ccc;
   border-radius:5px;
   width:75%;
   padding:25px; 
   margin:18px auto;
+  background-color: white;
 }
 
-input, button, label, div{
+input, label, div{
   display:block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
  input, select{

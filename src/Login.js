@@ -47,9 +47,9 @@ class Login extends Component{
         return(
             <div className="login">
                 <form id="login" onSubmit={(e) => this.handleSubmit(e)}>
-                    <label htmlFor="username">username:</label>
+                    <label htmlFor="username">Username:</label>
                     <input id="username" type="text" required onChange={(e) => this.handleChange(e)}/>
-                    <label htmlFor="password">password:</label>
+                    <label htmlFor="password">Password:</label>
                     <input id="password" type="password" minLength="8" required onChange={(e) => this.handleChange(e)}/>
                     <input id="submit" type="submit" value='Submit' disabled={
                         (this.state.username.length > 1 && this.state.password.length >= 8) 

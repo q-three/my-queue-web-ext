@@ -19,6 +19,7 @@ class Home extends Component{
 
     componentDidMount(){
         this.getFriends(this.props.authentication.user.id)
+        this.setColor()
         this.getCurrentUrl()
         .then(result => {
             if(result !== ''){
@@ -28,7 +29,23 @@ class Home extends Component{
         })
       }
 
-     getCurrentUrl = () =>{
+    componentWillUnmount(){
+        this.resetColor()
+    }
+
+    setColor = () =>{
+        if(this.props.authentication.user.color && document.getElementsByTagName("html")[0]) {
+            document.getElementsByTagName("html")[0].style.backgroundColor = this.props.authentication.user.color
+        }
+    }
+
+    resetColor = () => {
+        if(document.getElementsByTagName("html")[0]) {
+            document.getElementsByTagName("html")[0].style.backgroundColor ="white"
+        }
+    }
+
+    getCurrentUrl = () =>{
         return new Promise((resolve, reject) => {
             window.chrome.tabs.query({active: true, currentWindow: true}, tabs => {  
                 if(tabs && tabs[0] && tabs[0].url) resolve(tabs[0].url)
@@ -101,8 +118,10 @@ class Home extends Component{
     render(){
         return(
             <div className="addQueueItem">
-                <div className="backButton" onClick={this.logout}>Logout</div>
-                <div className="clearButton" onClick={this.clearForm}>Clear</div>
+                <div>
+                    <div className="backButton" onClick={this.logout}>Logout</div>
+                    <div className="clearButton" onClick={this.clearForm}>Clear</div>
+                </div>
                 <form onSubmit={this.submit}>
                     <label htmlFor='selectedUser'>Add For: </label>
                     <select className="selectSearch" name="selectedUser" onChange={this.handleChange}>
