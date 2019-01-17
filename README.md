@@ -11,7 +11,7 @@ After login the main popup screen allows you to add to your Queue or a friend's.
 It fills in the current tab's URL by default, but can be cleared to use another (like a link on the page)<br>
 
 ### To Do
-This project requires a .env file with the following data
+This project requires a .env file with the following data <br>
 `INLINE_RUNTIME_CHUNK=false
  REACT_APP_BASE_URL=(INSERT URL HERE)`
 Since this works in tandem with the My-Queue project, it requires a back end url in REACT_APP_BASE_URL
