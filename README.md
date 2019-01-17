@@ -12,8 +12,8 @@ It fills in the current tab's URL by default, but can be cleared to use another 
 
 ### To Do
 This project requires a .env file with the following data <br>
-`INLINE_RUNTIME_CHUNK=false
- REACT_APP_BASE_URL=(INSERT URL HERE)`
+`INLINE_RUNTIME_CHUNK=false`<br>
+`REACT_APP_BASE_URL=(INSERT URL HERE)`
 Since this works in tandem with the My-Queue project, it requires a back end url in REACT_APP_BASE_URL
 
 ## To Install in Chrome
