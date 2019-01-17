@@ -10,16 +10,17 @@ However, you must have a valid login. You will not be able to sign up through th
 After login the main popup screen allows you to add to your Queue or a friend's.<br>
 It fills in the current tab's URL by default, but can be cleared to use another (like a link on the page)<br>
 
-### To Do
-This project requires a .env file with the following data <br>
-`INLINE_RUNTIME_CHUNK=false`<br>
-`REACT_APP_BASE_URL=(INSERT URL HERE)`
-Since this works in tandem with the My-Queue project, it requires a back end url in REACT_APP_BASE_URL
 
 ## To Install in Chrome
 
 Since this will not be available in the Chrome Extension Store, you can load this package as an Unpacked Extension<br>
 (See more here: https://developer.chrome.com/extensions/getstarted#unpacked)<br>
+* Start with `npm i` in the root
+* add a .env file with the following lines <br>
+`INLINE_RUNTIME_CHUNK=false`<br>
+`REACT_APP_BASE_URL=(INSERT URL HERE)`
+Since this works in tandem with the My-Queue project, it requires a back end url in REACT_APP_BASE_URL<br>
+
 * Go to chrome://extensions/<br>
 * Make sure you have Developer Mode on<br>
 * Build the project using `yarn build` or `npm run build`<br>
