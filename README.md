@@ -12,7 +12,7 @@ It fills in the current tab's URL by default, but can be cleared to use another 
 
 ## Screenshots
 ![logging in](screenshots/OpenPage.gif "Logging in to myQueueMini")
-![adding](screenshots/AdddPage.gif "Adding Content to myQueue")
+![adding](screenshots/AddPage.gif "Adding Content to myQueue")
 
 ## To Install in Chrome
 
