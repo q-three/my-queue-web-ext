@@ -10,6 +10,9 @@ However, you must have a valid login. You will not be able to sign up through th
 After login the main popup screen allows you to add to your Queue or a friend's.<br>
 It fills in the current tab's URL by default, but can be cleared to use another (like a link on the page)<br>
 
+## Screenshots
+![logging in](screenshots/OpenPage.gif "Logging in to myQueueMini")
+![adding](screenshots/AdddPage.gif "Adding Content to myQueue")
 
 ## To Install in Chrome
 
